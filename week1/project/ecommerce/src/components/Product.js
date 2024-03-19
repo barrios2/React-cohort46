@@ -1,10 +1,11 @@
 export default function Product({ product }) {
   return(
-    <li>
+    <li className={'product-card'}>
       <img
         src={product?.image}
-        alt={product?.title}      
+        alt={product?.description}      
       />
+     <p>{product.title}</p>
     </li>
   );
 };

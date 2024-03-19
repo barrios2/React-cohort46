@@ -1,5 +1,5 @@
-import { products } from "../fake-data/all-products";
-import Product from "./Product";
+import { products } from '../fake-data/all-products';
+import Product from './Product';
 
 export default function ProductList({ activeCategory }) {
   const listItems = products.map((product, i) =>
@@ -12,5 +12,5 @@ export default function ProductList({ activeCategory }) {
 
   const children = activeCategory === '' ? listItems : filteredProducts;
 
-  return <ul>{children}</ul>;
+  return <ul className={'product-card-list'}>{children}</ul>;
 }
