@@ -6,13 +6,13 @@ export default function Product({ product, setActiveProductInfo }) {
   }
 
   return(
-    <li className={'product-card'}>
+    <li className='product-card'>
       <Link to={`/product/${product?.id}`} onClick={handleClick}>
       <img
         src={product?.image}
         alt={product?.description}      
       />
-     <p className={'product-title'}>{product?.title}</p>
+     <p className='product-title'>{product?.title}</p>
      </Link>
     </li>
   );

@@ -18,13 +18,13 @@ export default function CategoryList({ setActiveCategory, activeCategory }) {
     getCategories();
   }, []);
 
-  const listItems = categoryList?.map((category, i) =>
+  const listItems = categoryList?.map(category =>
     <Category 
     setActiveCategory={setActiveCategory} 
     category={category} 
     activeCategory={activeCategory} 
-    key={category + i} /> 
+    key={category} /> 
   );
   
-  return <ul className={'category-list'}>{listItems}</ul>;
+  return <ul className='category-list'>{listItems}</ul>;
 }

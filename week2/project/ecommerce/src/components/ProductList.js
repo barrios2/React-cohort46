@@ -2,8 +2,8 @@ import Product from './Product';
 import { useEffect, useState } from 'react';
 
 export default function ProductList({ activeCategory, setActiveProductInfo }) {
-  const [productList, setProductList] = useState(null); // to store productList from API call
-  const [filteredProducts, setFilteredProducts] = useState(null); // to store the products from filtered API call /products/category/:selectedCategory 
+  const [productList, setProductList] = useState([]); // to store productList from API call
+  const [filteredProducts, setFilteredProducts] = useState([]); // to store the products from filtered API call /products/category/:selectedCategory 
   const [isLoading, setIsLoading] = useState(false);
   const PRODUCTS_URL = 'https://fakestoreapi.com/products';
 
@@ -41,17 +41,13 @@ export default function ProductList({ activeCategory, setActiveProductInfo }) {
     }
   }, [activeCategory]); // fire useEffect when the activeCategory changes
 
-  const listItems = productList?.map((product, i) =>
-    <Product product={product} key={product.title + i} setActiveProductInfo={setActiveProductInfo}/>
-  );
+  const getProductCard = (products) => {
+    return products?.map((product) => <Product product={product} key={product.id} setActiveProductInfo={setActiveProductInfo}/>);
+  }
 
-  const filtered = filteredProducts?.map((product, i) =>
-    <Product product={product} key={product.title + i} setActiveProductInfo={setActiveProductInfo}/>
-  );
-
-  const children = activeCategory === '' ? listItems : filtered;
+  const children = activeCategory === '' ? getProductCard(productList) : getProductCard(filteredProducts);
 
   return (
-    isLoading ? <p>{'Loading...'}</p> : <ul className={'product-card-list'}>{children}</ul>
+    isLoading ? <p>{'Loading...'}</p> : <ul className='product-card-list'>{children}</ul>
   );
 }
